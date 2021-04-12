@@ -13,6 +13,19 @@ namespace ActionInvokeSample
         public MainPage()
         {
             InitializeComponent();
+            var viewModel = new MainViewModel();
+            BindingContext = viewModel;
+            viewModel.OnLoginFailed = ((obj) =>
+            {
+                PasswordEntry.Focus();
+            });
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            // Makes the PasswordEntry get the focus on page load
+            PasswordEntry.Focus();
         }
     }
 }
